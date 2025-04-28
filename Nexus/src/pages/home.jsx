@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../components/navbar";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import Testimonials from '../components/Testimonials';
 
 function HomePage() {
   return (
@@ -168,6 +169,37 @@ function HomePage() {
         </div>
       </section>
 
+      {/* Technologies Section */}
+      <section className="py-20 bg-gray-900/60">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-4xl font-satoshi font-bold text-center text-blue-400 mb-12">Technologies We Work With</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { name: "Web Development", icon: "🌐", tools: "React, Node.js, Next.js" },
+              { name: "Mobile Development", icon: "📱", tools: "Flutter, React Native" },
+              { name: "AI & ML", icon: "🤖", tools: "Python, TensorFlow, PyTorch" },
+              { name: "Cloud Computing", icon: "☁️", tools: "AWS, Azure, GCP" },
+              { name: "Cybersecurity", icon: "🔒", tools: "Ethical Hacking, Security+" },
+              { name: "IoT", icon: "📡", tools: "Arduino, Raspberry Pi" },
+              { name: "Blockchain", icon: "⛓️", tools: "Ethereum, Solidity" },
+              { name: "UI/UX Design", icon: "🎨", tools: "Figma, Adobe XD" }
+            ].map((tech, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-gray-800 p-6 rounded-xl text-center hover:bg-gray-700 transition-colors"
+              >
+                <div className="text-4xl mb-3">{tech.icon}</div>
+                <h3 className="text-white font-satoshi font-bold mb-2">{tech.name}</h3>
+                <p className="text-gray-400 text-sm">{tech.tools}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Stats Section */}
       <section className="py-20 bg-gray-950">
         <div className="max-w-6xl mx-auto px-4">
@@ -193,44 +225,222 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 bg-gray-900/40">
+      {/* Achievements Section */}
+      <section className="py-20 bg-gray-900/20">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-4xl font-satoshi font-bold text-center text-blue-400 mb-12">What Our Members Say</h2>
+          <h2 className="text-4xl font-satoshi font-bold text-center text-blue-400 mb-12">Our Achievements</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                name: "Priya Kumar",
-                role: "Final Year CSE",
-                quote: "Joining Nexus was the best decision of my college life. The exposure and learning opportunities are incredible.",
-                image: "/testimonial1.jpg"
+                title: "Best Tech Club Award 2024",
+                organization: "Karnataka Technical Institutions",
+                description: "Recognized for outstanding contribution to technical education",
+                icon: "🏆"
               },
               {
-                name: "Rahul Sharma",
-                role: "Third Year ECE",
-                quote: "The mentorship and guidance from seniors and industry experts helped me land my dream internship.",
-                image: "/testimonial2.jpg"
+                title: "Smart India Hackathon Winners",
+                organization: "Government of India",
+                description: "First prize in Software Edition 2024",
+                icon: "🥇"
+              },
+              {
+                title: "Innovation Excellence",
+                organization: "IEEE Student Branch",
+                description: "Best Student Chapter in South India Region",
+                icon: "⭐"
+              },
+              {
+                title: "Industry Partnership Excellence",
+                organization: "TechCorp India",
+                description: "Best Industry-Academia Collaboration",
+                icon: "🤝"
               }
-            ].map((testimonial, index) => (
+            ].map((achievement, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="bg-gray-800 p-6 rounded-xl"
+                transition={{ delay: index * 0.2 }}
+                className="bg-gray-800 p-6 rounded-xl border border-blue-500/20"
               >
-                <div className="flex items-center mb-4">
-                  <img 
-                    src={testimonial.image} 
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full mr-4"
-                  />
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="text-4xl">{achievement.icon}</span>
                   <div>
-                    <div className="text-white font-bold">{testimonial.name}</div>
-                    <div className="text-gray-400 text-sm">{testimonial.role}</div>
+                    <h3 className="text-xl font-satoshi font-bold text-white">{achievement.title}</h3>
+                    <p className="text-blue-400">{achievement.organization}</p>
                   </div>
                 </div>
-                <p className="text-gray-300 italic">"{testimonial.quote}"</p>
+                <p className="text-gray-400">{achievement.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <Testimonials />
+
+      {/* Upcoming Activities Section */}
+      <section className="py-20 bg-gray-900/30">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-4xl font-satoshi font-bold text-center text-blue-400 mb-12">Upcoming Activities</h2>
+          <div className="space-y-6">
+            { [
+              {
+                title: "Web3 Workshop Series",
+                date: "Starting June 1, 2025",
+                time: "Every Saturday, 2:00 PM",
+                description: "Deep dive into blockchain, NFTs, and decentralized applications",
+                tags: ["Blockchain", "Ethereum", "Smart Contracts"]
+              },
+              {
+                title: "Summer of Code 2025",
+                date: "June 15 - August 15, 2025",
+                time: "Full-time program",
+                description: "2-month intensive coding program with industry mentors",
+                tags: ["Coding", "Mentorship", "Projects"]
+              },
+              {
+                title: "Tech Leadership Summit",
+                date: "July 10, 2025",
+                time: "9:00 AM - 6:00 PM",
+                description: "Annual leadership conference with industry leaders",
+                tags: ["Leadership", "Networking", "Career"]
+              }
+            ].map((activity, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.2 }}
+                className="bg-gray-800 p-6 rounded-xl flex flex-col md:flex-row gap-6 items-center"
+              >
+                <div className="md:w-48 text-center md:text-left">
+                  <div className="text-blue-400 font-semibold">{activity.date}</div>
+                  <div className="text-gray-400 text-sm">{activity.time}</div>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-satoshi font-bold text-white mb-2">{activity.title}</h3>
+                  <p className="text-gray-400 mb-4">{activity.description}</p>
+                  <div className="flex gap-2 flex-wrap">
+                    {activity.tags.map((tag, tagIndex) => (
+                      <span
+                        key={tagIndex}
+                        className="bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full text-sm"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <Link
+                  to={`/activities/${activity.title.toLowerCase().replace(/\s+/g, '-')}`}
+                  className="bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 px-6 py-2 rounded-lg transition"
+                >
+                  Learn More
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Tier System Section */}
+      <section className="py-20 bg-gray-900/40">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-4xl font-satoshi font-bold text-center text-blue-400 mb-6">Membership Tiers</h2>
+          <p className="text-gray-300 text-center mb-12 max-w-2xl mx-auto">
+            Join our community at the level that fits your journey. Progress through the tiers as you grow.
+          </p>
+          <div className="grid md:grid-cols-3 gap-8">
+            { [
+              {
+                name: "Seeker",
+                price: "Free",
+                description: "Perfect for beginners starting their tech journey",
+                features: [
+                  "Access to community forums",
+                  "Guidance from Learner tier members",
+                  "Basic workshop access",
+                  "Community support",
+                  "Learning resources"
+                ],
+                icon: "🌱",
+                popular: false
+              },
+              {
+                name: "Learner",
+                price: "₹100/year",
+                description: "For dedicated learners ready to contribute and grow",
+                features: [
+                  "All Seeker benefits",
+                  "Paid project opportunities",
+                  "Event discounts",
+                  "Exclusive workshops",
+                  "Mentorship sessions"
+                ],
+                icon: "⭐",
+                popular: true
+              },
+              {
+                name: "Mastermind",
+                price: "Free",
+                description: "Recognition for domain experts and achievers",
+                features: [
+                  "All Learner benefits",
+                  "Project leadership roles",
+                  "Mentorship opportunities",
+                  "Speaker opportunities",
+                  "Industry connections"
+                ],
+                icon: "👑",
+                popular: false
+              }
+            ].map((tier, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2 }}
+                className={`bg-gray-800 rounded-xl p-6 border ${
+                  tier.popular 
+                    ? 'border-blue-500 shadow-lg shadow-blue-500/20' 
+                    : 'border-gray-700'
+                } relative`}
+              >
+                {tier.popular && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-4 py-1 rounded-full text-sm">
+                    Most Popular
+                  </div>
+                )}
+                <div className="text-center mb-6">
+                  <div className="text-4xl mb-4">{tier.icon}</div>
+                  <h3 className="text-2xl font-satoshi font-bold text-white mb-2">{tier.name}</h3>
+                  <div className="text-blue-400 text-xl font-bold mb-2">{tier.price}</div>
+                  <p className="text-gray-400 text-sm">{tier.description}</p>
+                </div>
+                <ul className="space-y-3 mb-6">
+                  {tier.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-center text-gray-300">
+                      <svg className="w-4 h-4 mr-2 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                      </svg>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <div className="text-center">
+                  <Link
+                    to={`/join/${tier.name.toLowerCase()}`}
+                    className={`inline-block px-6 py-2 rounded-lg transition ${
+                      tier.popular
+                        ? 'bg-blue-500 hover:bg-blue-600 text-white'
+                        : 'bg-gray-700 hover:bg-gray-600 text-gray-300'
+                    }`}
+                  >
+                    Get Started
+                  </Link>
+                </div>
               </motion.div>
             ))}
           </div>
