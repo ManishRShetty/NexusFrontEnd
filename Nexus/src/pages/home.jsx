@@ -69,7 +69,7 @@ function HomePage() {
               className="relative h-[400px] rounded-xl overflow-hidden"
             >
               <img 
-                src="/mission-image.jpg" 
+                src="src/assets/student.jpeg" 
                 alt="Students collaborating" 
                 className="object-cover w-full h-full"
               />
