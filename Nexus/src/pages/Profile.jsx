@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '../components/navbar';
 import { FaGithub, FaLinkedin, FaInstagram, FaPen } from 'react-icons/fa';
+import seekerIcon from '../assets/seeker-icon.png';
+import learnerIcon from '../assets/learner-icon.png';
+import mastermindIcon from '../assets/mastermind-icon.png';
 
 export default function Profile() {
   const [isEditing, setIsEditing] = useState(false);
@@ -61,6 +64,15 @@ export default function Profile() {
       case 'learner': return 'bg-blue-500';
       case 'mastermind': return 'bg-purple-500';
       default: return 'bg-gray-500';
+    }
+  };
+
+  const getTierIcon = (tier) => {
+    switch (tier.toLowerCase()) {
+      case 'seeker': return seekerIcon;
+      case 'learner': return learnerIcon;
+      case 'mastermind': return mastermindIcon;
+      default: return seekerIcon;
     }
   };
 
@@ -138,8 +150,13 @@ export default function Profile() {
               </div>
 
               {/* Tier Badge */}
-              <div className={`inline-flex items-center ${getTierColor(profile.tier)} px-4 py-1.5 rounded-full text-white text-sm mb-4 shadow-md transition-transform transform hover:scale-105`}>
-                ⭐ {profile.tier} Tier
+              <div className={`inline-flex items-center gap-2 ${getTierColor(profile.tier)} px-4 py-1.5 rounded-full text-white text-sm mb-4 shadow-md transition-transform transform hover:scale-105`}>
+                <img 
+                  src={getTierIcon(profile.tier)} 
+                  alt={`${profile.tier} tier`} 
+                  className="w-4 h-4 object-contain"
+                />
+                {profile.tier} Tier
               </div>
 
               {isEditing ? (

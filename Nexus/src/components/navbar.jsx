@@ -18,10 +18,11 @@ export default function Navbar() {
           <Link to="/about" className="hover:text-blue-400 transition">About</Link>
           <Link to="/events" className="hover:text-blue-400 transition">Events</Link>
           <Link to="/projects" className="hover:text-blue-400 transition">Projects</Link>
-          <Link to="/blog" className="hover:text-blue-400 transition">Blog</Link>
+          
           <Link to="/join" className="hover:text-blue-400 transition">Join Us</Link>
           <Link to="/gallery" className="hover:text-blue-400 transition">Gallery</Link>
           <Link to="/contact" className="hover:text-blue-400 transition">Contact</Link>
+          <Link to="/auth" className="hover:text-blue-400 transition">Sign In</Link>
         </div>
 
         {/* Mobile Menu Button (optional - future) */}

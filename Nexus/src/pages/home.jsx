@@ -3,6 +3,9 @@ import Navbar from "../components/navbar";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Testimonials from '../components/Testimonials';
+import seekerIcon from '../assets/seeker-icon.png';
+import learnerIcon from '../assets/learner-icon.png';
+import mastermindIcon from '../assets/mastermind-icon.png';
 
 function HomePage() {
   return (
@@ -365,7 +368,7 @@ function HomePage() {
                   "Community support",
                   "Learning resources"
                 ],
-                icon: "🌱",
+                icon: seekerIcon,
                 popular: false
               },
               {
@@ -379,7 +382,7 @@ function HomePage() {
                   "Exclusive workshops",
                   "Mentorship sessions"
                 ],
-                icon: "⭐",
+                icon: learnerIcon,
                 popular: true
               },
               {
@@ -393,7 +396,7 @@ function HomePage() {
                   "Speaker opportunities",
                   "Industry connections"
                 ],
-                icon: "👑",
+                icon: mastermindIcon,
                 popular: false
               }
             ].map((tier, index) => (
@@ -414,7 +417,11 @@ function HomePage() {
                   </div>
                 )}
                 <div className="text-center mb-6">
-                  <div className="text-4xl mb-4">{tier.icon}</div>
+                  <img 
+                    src={tier.icon} 
+                    alt={`${tier.name} tier`}
+                    className="w-16 h-16 mx-auto mb-4 object-contain"
+                  />
                   <h3 className="text-2xl font-satoshi font-bold text-white mb-2">{tier.name}</h3>
                   <div className="text-blue-400 text-xl font-bold mb-2">{tier.price}</div>
                   <p className="text-gray-400 text-sm">{tier.description}</p>
