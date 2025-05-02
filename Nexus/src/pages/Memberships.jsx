@@ -27,7 +27,7 @@ const tiers = [
       "Enthusiasm to learn",
       "Commitment to participate in basic activities"
     ],
-    color: "from-green-400 to-green-600"
+    color: "from-red-500 to-red-600"
   },
   {
     name: "Learner",
@@ -52,7 +52,7 @@ const tiers = [
       "Demonstrate basic technical skills",
       "Regular community contribution"
     ],
-    color: "from-blue-400 to-blue-600"
+    color: "from-blue-500 to-blue-600"
   },
   {
     name: "Mastermind",
@@ -77,7 +77,7 @@ const tiers = [
       "Strong leadership qualities",
       "Active community contribution"
     ],
-    color: "from-purple-400 to-purple-600"
+    color: "from-amber-400 to-orange-500"
   }
 ];
 

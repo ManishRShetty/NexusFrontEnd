@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useAuth } from '../contexts/AuthContext';
+import { db } from '../firebase/config';
+import { doc, setDoc } from 'firebase/firestore';
 import Navbar from '../components/navbar';
 
 export default function RegisterPage() {
+  const { signup } = useAuth();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -43,18 +49,39 @@ export default function RegisterPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newErrors = validateForm();
+    
+    if (formData.password !== formData.confirmPassword) {
+      return setError("Passwords do not match");
+    }
 
-    if (Object.keys(newErrors).length === 0) {
-      try {
-        // Add your registration API call here
-        console.log('Form submitted:', formData);
-        navigate('/auth'); // Redirect to login page after successful registration
-      } catch (error) {
-        console.error('Registration error:', error);
-      }
-    } else {
-      setErrors(newErrors);
+    try {
+      setError('');
+      setLoading(true);
+      
+      // Create the user in Firebase Auth
+      const userCredential = await signup(formData.email, formData.password);
+      
+      // Create user profile in Firestore
+      await setDoc(doc(db, 'users', userCredential.user.uid), {
+        fullName: formData.fullName,
+        email: formData.email,
+        collegeId: formData.collegeId,
+        branch: formData.branch,
+        year: formData.year,
+        createdAt: new Date().toISOString(),
+        role: 'member',
+        tier: 'seeker'
+      });
+
+      // Log success and navigate
+      console.log('Registration successful');
+      navigate('/auth');
+      
+    } catch (error) {
+      console.error('Registration error:', error);
+      setError(error.message || 'Failed to create an account');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -74,6 +101,11 @@ export default function RegisterPage() {
           </h1>
           
           <form onSubmit={handleSubmit} className="space-y-6">
+            {error && (
+              <div className="bg-red-500/10 border border-red-500 text-red-500 px-4 py-2 rounded-lg mb-6">
+                {error}
+              </div>
+            )}
             <div>
               <label className="block text-gray-300 mb-2" htmlFor="fullName">
                 Full Name
@@ -211,9 +243,12 @@ export default function RegisterPage() {
 
             <button
               type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg transition duration-200"
+              disabled={loading}
+              className={`w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg transition ${
+                loading ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
             >
-              Register
+              {loading ? 'Creating Account...' : 'Register'}
             </button>
           </form>
 

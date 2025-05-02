@@ -13,7 +13,7 @@ function HomePage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center text-white px-4">
+      <section className="min-h-screen flex flex-col items-center justify-center text-white px-4" style={{ backgroundImage: "url('/src/assets/bg.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -400,55 +400,59 @@ function HomePage() {
                 popular: false
               }
             ].map((tier, index) => (
-              <motion.div
+              <Link 
+                to={`/join/${tier.name.toLowerCase()}`} 
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2 }}
-                className={`bg-gray-800 rounded-xl p-6 border ${
-                  tier.popular 
-                    ? 'border-blue-500 shadow-lg shadow-blue-500/20' 
-                    : 'border-gray-700'
-                } relative`}
+                className="block"
               >
-                {tier.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-4 py-1 rounded-full text-sm">
-                    Most Popular
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.2 }}
+                  className={`bg-gray-800 rounded-xl p-6 border ${
+                    tier.popular 
+                      ? 'border-blue-500 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30' 
+                      : 'border-gray-700 hover:border-gray-600'
+                  } relative transition-all hover:transform hover:scale-105`}
+                >
+                  {tier.popular && (
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-4 py-1 rounded-full text-sm">
+                      Most Popular
+                    </div>
+                  )}
+                  <div className="text-center mb-6">
+                    <img 
+                      src={tier.icon} 
+                      alt={`${tier.name} tier`}
+                      className="w-16 h-16 mx-auto mb-4 object-contain"
+                    />
+                    <h3 className="text-2xl font-satoshi font-bold text-white mb-2">{tier.name}</h3>
+                    <div className="text-blue-400 text-xl font-bold mb-2">{tier.price}</div>
+                    <p className="text-gray-400 text-sm">{tier.description}</p>
                   </div>
-                )}
-                <div className="text-center mb-6">
-                  <img 
-                    src={tier.icon} 
-                    alt={`${tier.name} tier`}
-                    className="w-16 h-16 mx-auto mb-4 object-contain"
-                  />
-                  <h3 className="text-2xl font-satoshi font-bold text-white mb-2">{tier.name}</h3>
-                  <div className="text-blue-400 text-xl font-bold mb-2">{tier.price}</div>
-                  <p className="text-gray-400 text-sm">{tier.description}</p>
-                </div>
-                <ul className="space-y-3 mb-6">
-                  {tier.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-gray-300">
-                      <svg className="w-4 h-4 mr-2 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <div className="text-center">
-                  <Link
-                    to={`/join/${tier.name.toLowerCase()}`}
-                    className={`inline-block px-6 py-2 rounded-lg transition ${
-                      tier.popular
-                        ? 'bg-blue-500 hover:bg-blue-600 text-white'
-                        : 'bg-gray-700 hover:bg-gray-600 text-gray-300'
-                    }`}
-                  >
-                    Get Started
-                  </Link>
-                </div>
-              </motion.div>
+                  <ul className="space-y-3 mb-6">
+                    {tier.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-center text-gray-300">
+                        <svg className="w-4 h-4 mr-2 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                        </svg>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="text-center">
+                    <span
+                      className={`inline-block px-6 py-2 rounded-lg ${
+                        tier.popular
+                          ? 'bg-blue-500 text-white'
+                          : 'bg-gray-700 text-gray-300'
+                      }`}
+                    >
+                      Get Started
+                    </span>
+                  </div>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>
