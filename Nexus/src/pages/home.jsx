@@ -29,7 +29,7 @@ function HomePage() {
 
   return (
     <div className={`min-h-screen bg-gray-950 ${isPixelFont ? 'font-pixel' : 'font-satoshi'}`}>
-      <Navbar />
+      
       
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col items-center justify-center text-white px-4 relative overflow-hidden" 
@@ -167,19 +167,19 @@ function HomePage() {
               {
                 title: "AI Workshop 2025",
                 date: "May 15, 2025",
-                image: "/event1.jpg",
+                image: "https://img.freepik.com/premium-photo/rear-view-woman-using-mobile-phone_1048944-15361537.jpg?semt=ais_hybrid&w=740",
                 description: "Deep dive into artificial intelligence and machine learning"
               },
               {
                 title: "Hackathon 5.0",
                 date: "June 1-2, 2025",
-                image: "/event2.jpg",
+                image: "https://media.istockphoto.com/id/1213258486/vector/hackathon-banner-illustration-abstract-futuristic-background-with-glitch-effect-in-neon.jpg?s=612x612&w=0&k=20&c=coVk4_1Xe_GM2NmRVPAMemmreVs7NTo6PaRKe-g_Phk=",
                 description: "48-hour coding challenge with amazing prizes"
               },
               {
                 title: "Tech Talk Series",
                 date: "Weekly",
-                image: "/event3.jpg",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrSua60tQ-2e7gX5AgXwI7kn_Ym01QIAR9JA&s",
                 description: "Industry experts sharing their experiences"
               }
             ].map((event, index) => (

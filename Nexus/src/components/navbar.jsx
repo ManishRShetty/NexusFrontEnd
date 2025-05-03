@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import LogoImg from '../assets/logo.png';
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -19,7 +19,7 @@ export default function Navbar() {
     { to: "/projects", label: "Projects" },
     { to: "/join", label: "Join Us" },
     { to: "/gallery", label: "Gallery" },
-    { to: "/contact", label: "Contact" },
+    { to: "/resources", label: "Resources" },
     { to: "/auth", label: "Sign In" }
   ];
 
@@ -28,7 +28,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo / Brand */}
         <div className="flex items-center space-x-2">
-          <img src="src/assets/logo.png" alt="Nexus Logo" className="h-10 w-auto p-1" />
+          <img src= {LogoImg} alt="Nexus Logo" className="h-10 w-auto p-1" />
           <span className="text-xl font-bold text-blue-400">NEXUS</span>
         </div>
 

@@ -30,7 +30,7 @@ export default function Auth() {
 
   return (
     <div className="min-h-screen bg-gray-950">
-      <Navbar />
+      
       
       <div className="container mx-auto px-4 py-16">
         <motion.div

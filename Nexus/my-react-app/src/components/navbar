@@ -1,0 +1,15 @@
+my-react-app
+├── src
+│   ├── components
+│   │   ├── footer
+│   │   │   ├── Footer.jsx
+│   │   │   ├── Footer.css
+│   │   │   └── index.js
+│   │   └── navbar
+│   │       └── Navbar.jsx
+│   ├── pages
+│   │   └── home.jsx
+│   ├── assets
+│   └── App.jsx
+├── package.json
+└── README.md

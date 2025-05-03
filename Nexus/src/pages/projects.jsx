@@ -45,7 +45,7 @@ export default function Projects() {
 
   return (
     <div className="min-h-screen bg-gray-950">
-      <Navbar />
+      
       
       {/* Hero Section */}
       <section className="py-20 bg-gray-900/50">

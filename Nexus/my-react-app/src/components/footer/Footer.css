@@ -1,0 +1,22 @@
+Sure, here's the contents for the file: /my-react-app/my-react-app/src/components/footer/Footer.css
+
+.footer {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer p {
+  margin: 10px 0;
+}

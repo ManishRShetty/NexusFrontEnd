@@ -11,7 +11,9 @@ import Registration from './pages/register'
 import ProtectedRoute from './components/ProtectedRoute';
 import LoadingScreen from './components/LoadingScreen';
 import { AnimatePresence } from 'framer-motion';
-
+import Footer from './components/footer/Footer';
+import RegisterPage from './pages/register';
+import Resources from './pages/Resources'
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -35,7 +37,9 @@ function App() {
             <Route path="/auth" element={<Auth />} />
             <Route path="/join" element={<Memberships />} />
             <Route path="/join/:tier" element={<Registration />} />
-            
+            <Route path='/about' element={<About />} />
+            <Route path="/events" element={<HomePage />} />
+            <Route path="/resources" element={<Resources />} />
             {/* Protected Routes */}
             <Route path="/profile" element={
               <ProtectedRoute>
@@ -51,6 +55,7 @@ function App() {
             
             <Route path="*" element={<HomePage />} />
           </Routes>
+          <Footer />
         </AuthProvider>
       )}
     </AnimatePresence>
