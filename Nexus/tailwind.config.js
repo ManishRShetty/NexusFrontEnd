@@ -5,11 +5,16 @@ module.exports = {
     "./public/index.html"
   ],
   theme: {
+    fontFamily: {
+      // Define the default font
+      sans: ['Satoshi', 'sans-serif'],
+      // Keep your other custom fonts
+      satoshi: ['Satoshi', 'sans-serif'],
+      montserrat: ['Montserrat', 'sans-serif'],
+      pixel: ['"Press Start 2P"', 'cursive'],
+    },
     extend: {
-      fontFamily: {
-        satoshi: ['Satoshi', 'sans-serif'],
-        montserrat: ['Montserrat', 'sans-serif'],
-      },
+      // ...other theme extensions
     },
   },
   plugins: [],

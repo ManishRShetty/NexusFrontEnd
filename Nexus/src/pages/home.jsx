@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react"; // Add useState import
 import Navbar from "../components/navbar";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -6,33 +6,72 @@ import Testimonials from '../components/Testimonials';
 import seekerIcon from '../assets/seeker-icon.png';
 import learnerIcon from '../assets/learner-icon.png';
 import mastermindIcon from '../assets/mastermind-icon.png';
+import { useTypewriter } from '../hooks/useTypewriter';
+import { useLoading } from '../contexts/LoadingContext';
 
 function HomePage() {
+  const [isPixelFont, setIsPixelFont] = useState(false);
+  const [displayText, startTyping, isTyping] = useTypewriter(
+    "Welcome to Nexus", 
+    50
+  );
+
+  // Updated toggle font function
+  const toggleFont = () => {
+    setIsPixelFont(prev => !prev);
+    startTyping('');
+    
+    // Update font family
+    document.documentElement.style.fontFamily = isPixelFont 
+      ? "Satoshi, system-ui, sans-serif"
+      : "'Press Start 2P', cursive";
+  };
+
   return (
-    <div className="min-h-screen bg-gray-950">
+    <div className={`min-h-screen bg-gray-950 ${isPixelFont ? 'font-pixel' : 'font-satoshi'}`}>
       <Navbar />
       
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center text-white px-4" style={{ backgroundImage: "url('/src/assets/bg.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="min-h-screen flex flex-col items-center justify-center text-white px-4 relative overflow-hidden" 
+        style={{ backgroundImage: "url('/src/assets/bgNew.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center"
+          className="text-center z-10 max-w-full w-full px-4 sm:px-6 lg:px-8"
         >
-          <h1 className="text-6xl font-satoshi font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-            Welcome to Nexus
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-satoshi font-extrabold mb-6 bg-white bg-clip-text text-transparent min-h-[80px]">
+            {isTyping ? displayText : "Welcome to Nexus"}
           </h1>
-          <p className="text-xl text-gray-300 font-montserrat mb-8 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-300 font-montserrat mb-8 max-w-2xl mx-auto">
             The Official Tech Club of Srinivas Institute of Technology
           </p>
-          <div className="flex gap-4 justify-center">
-            <Link to="/join" className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg transition">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link to="/join" className="w-full sm:w-auto bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg transition text-center">
               Join Us
             </Link>
-            <Link to="/events" className="border border-blue-500 text-blue-400 hover:bg-blue-500/10 px-8 py-3 rounded-lg transition">
+            <Link to="/events" className="w-full sm:w-auto border border-blue-500 text-blue-400 hover:bg-blue-500/10 px-8 py-3 rounded-lg transition text-center">
               Explore Events
             </Link>
+          </div>
+        </motion.div>
+
+        {/* Character */}
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="absolute -bottom-10 right-0 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 cursor-pointer hover:scale-110 transition-transform group"
+          onClick={toggleFont}
+          title="Click me to change font!"
+        >
+          <img
+            src="/src/assets/Nexy.png"
+            alt="Tech character"
+            className="w-full h-full object-contain drop-shadow-[0_0_25px_rgba(59,130,246,0.3)]"
+          />
+          <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-blue-500/80 px-3 py-1 rounded-full text-xs sm:text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+            Click to toggle pixel font!
           </div>
         </motion.div>
       </section>
@@ -85,7 +124,7 @@ function HomePage() {
       <section className="py-20 bg-gray-900">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-4xl font-satoshi font-bold text-center text-blue-400 mb-12">What We Offer</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[ 
               {
                 title: "Technical Workshops",
@@ -123,7 +162,7 @@ function HomePage() {
       <section className="py-20 bg-gray-900/30">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-4xl font-satoshi font-bold text-center text-blue-400 mb-12">Latest Events</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               {
                 title: "AI Workshop 2025",
@@ -176,7 +215,7 @@ function HomePage() {
       <section className="py-20 bg-gray-900/60">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-4xl font-satoshi font-bold text-center text-blue-400 mb-12">Technologies We Work With</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
             {[
               { name: "Web Development", icon: "🌐", tools: "React, Node.js, Next.js" },
               { name: "Mobile Development", icon: "📱", tools: "Flutter, React Native" },
@@ -206,10 +245,10 @@ function HomePage() {
       {/* Stats Section */}
       <section className="py-20 bg-gray-950">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
             {[ 
-              { number: "500+", label: "Active Members" },
-              { number: "50+", label: "Events Conducted" },
+              { number: "20+", label: "Active Members" },
+              { number: "3+", label: "Events Conducted" },
               { number: "20+", label: "Industry Partners" },
               { number: "100%", label: "Learning Experience" }
             ].map((stat, index) => (
@@ -232,7 +271,7 @@ function HomePage() {
       <section className="py-20 bg-gray-900/20">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-4xl font-satoshi font-bold text-center text-blue-400 mb-12">Our Achievements</h2>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {[
               {
                 title: "Best Tech Club Award 2024",
@@ -316,16 +355,16 @@ function HomePage() {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.2 }}
-                className="bg-gray-800 p-6 rounded-xl flex flex-col md:flex-row gap-6 items-center"
+                className="bg-gray-800 p-4 sm:p-6 rounded-xl flex flex-col md:flex-row gap-4 md:gap-6 items-center"
               >
-                <div className="md:w-48 text-center md:text-left">
-                  <div className="text-blue-400 font-semibold">{activity.date}</div>
-                  <div className="text-gray-400 text-sm">{activity.time}</div>
+                <div className="w-full md:w-48 text-center md:text-left">
+                  <div className="text-blue-400 font-semibold text-sm sm:text-base">{activity.date}</div>
+                  <div className="text-gray-400 text-xs sm:text-sm">{activity.time}</div>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-satoshi font-bold text-white mb-2">{activity.title}</h3>
-                  <p className="text-gray-400 mb-4">{activity.description}</p>
-                  <div className="flex gap-2 flex-wrap">
+                  <h3 className="text-lg sm:text-xl font-satoshi font-bold text-white mb-2 text-center md:text-left">{activity.title}</h3>
+                  <p className="text-gray-400 mb-4 text-sm sm:text-base text-center md:text-left">{activity.description}</p>
+                  <div className="flex gap-2 flex-wrap justify-center md:justify-start">
                     {activity.tags.map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
@@ -338,7 +377,7 @@ function HomePage() {
                 </div>
                 <Link
                   to={`/activities/${activity.title.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 px-6 py-2 rounded-lg transition"
+                  className="w-full md:w-auto bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 px-6 py-2 rounded-lg transition text-center"
                 >
                   Learn More
                 </Link>
@@ -355,7 +394,7 @@ function HomePage() {
           <p className="text-gray-300 text-center mb-12 max-w-2xl mx-auto">
             Join our community at the level that fits your journey. Progress through the tiers as you grow.
           </p>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             { [
               {
                 name: "Seeker",
@@ -409,7 +448,7 @@ function HomePage() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.2 }}
-                  className={`bg-gray-800 rounded-xl p-6 border ${
+                  className={`bg-gray-800 rounded-xl p-4 sm:p-6 border ${
                     tier.popular 
                       ? 'border-blue-500 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30' 
                       : 'border-gray-700 hover:border-gray-600'
