@@ -32,12 +32,12 @@ const testimonialData = [
     quote: "Nexus is the place where ideas spark, friendships grow, and we turn fun projects into real achievements",
     image: "https://media.licdn.com/dms/image/v2/D4E03AQEwveEdc99tpw/profile-displayphoto-shrink_800_800/B4EZZ1JNrdHcAc-/0/1745722074167?e=1751500800&v=beta&t=gM7ANNW0BqGl__DliYZxEjAgZu3_pdmQcrAHjtgIFrk"
   },
-  {
-    name: "Allen Lobo",
-    role: "2nd Year CSBS",
-    quote: "Gained real-world project experience, advanced technical knowledge, and developed essential professional skills through practical learning",
-    image: "https://media.licdn.com/dms/image/v2/D5603AQFUu5BPX6N78w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718224507676?e=1751500800&v=beta&t=4DIj60TW9Mjs8wemEULn641D3sF4KZX5KS9pxG9HVTI"
-  },
+  // {
+  //   name: "Allen Lobo",
+  //   role: "2nd Year CSBS",
+  //   quote: "Gained real-world project experience, advanced technical knowledge, and developed essential professional skills through practical learning",
+  //   image: "https://media.licdn.com/dms/image/v2/D5603AQFUu5BPX6N78w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718224507676?e=1751500800&v=beta&t=4DIj60TW9Mjs8wemEULn641D3sF4KZX5KS9pxG9HVTI"
+  // },
 ];
 
 const TestimonialCard = ({ testimonial }) => (

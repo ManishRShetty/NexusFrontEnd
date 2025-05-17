@@ -40,17 +40,14 @@ function App() {
             <Route path='/about' element={<About />} />
             <Route path="/events" element={<HomePage />} />
             <Route path="/resources" element={<Resources />} />
+            <Route path="/projects" element={<Projects />} />
             {/* Protected Routes */}
             <Route path="/profile" element={
               <ProtectedRoute>
                 <Profile />
               </ProtectedRoute>
             } />
-            <Route path="/projects" element={
-              <ProtectedRoute>
-                <Projects />
-              </ProtectedRoute>
-            } />
+            
             {/* ...other protected routes... */}
             
             <Route path="*" element={<HomePage />} />

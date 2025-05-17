@@ -10,7 +10,7 @@ const projectsData = [
     image: "/projects/nexus-website.jpg",
     tech: ["React", "TailwindCSS", "Framer Motion"],
     github: "https://github.com/nexus/website",
-    demo: "https://nexus.sit.edu",
+    demo: "https://www.nexusclubs.in",
     status: "Completed"
   },
   {

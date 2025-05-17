@@ -2,6 +2,8 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, setPersistence, browserLocalPersistence } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
+import { getDatabase } from "firebase/database";
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyBH6XkvCVL3f02eECVz6OSjIniNIEMUw38",
@@ -21,6 +23,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
+const database = getDatabase(app); // Initialize Realtime Database
 
 // Set persistence
 setPersistence(auth, browserLocalPersistence)
@@ -28,5 +31,5 @@ setPersistence(auth, browserLocalPersistence)
     console.error("Persistence error:", error);
   });
 
-export { auth, db };
+export { auth, db, database }; // Export database
 export default app;

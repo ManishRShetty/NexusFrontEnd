@@ -11,7 +11,7 @@ module.exports = {
       // Keep your other custom fonts
       satoshi: ['Satoshi', 'sans-serif'],
       montserrat: ['Montserrat', 'sans-serif'],
-      pixel: ['"Press Start 2P"', 'cursive'],
+      pixel: ['"Press Start 2P"', 'Satoshi','sans-serif'],
     },
     extend: {
       // ...other theme extensions

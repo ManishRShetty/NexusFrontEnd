@@ -18,13 +18,14 @@ function HomePage() {
 
   // Updated toggle font function
   const toggleFont = () => {
-    setIsPixelFont(prev => !prev);
+    setIsPixelFont(prev => {
+      // Update font family based on the new state value
+      document.documentElement.style.fontFamily = !prev 
+        ? "'Press Start 2P', cursive"
+        : "Satoshi, system-ui, sans-serif";
+      return !prev;
+    });
     startTyping('');
-    
-    // Update font family
-    document.documentElement.style.fontFamily = isPixelFont 
-      ? "Satoshi, system-ui, sans-serif"
-      : "'Press Start 2P', cursive";
   };
 
   return (
@@ -111,7 +112,7 @@ function HomePage() {
               className="relative h-[400px] rounded-xl overflow-hidden"
             >
               <img 
-                src="src/assets/student.jpeg" 
+                src={"https://wpvip.edutopia.org/wp-content/uploads/2024/12/hero_blog_Brain-Based-Learning_Teaching-Strategies_photo_iStock_2154414848_SeventyFour.jpg"} 
                 alt="Students collaborating" 
                 className="object-cover w-full h-full"
               />
@@ -274,29 +275,29 @@ function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {[
               {
-                title: "Best Tech Club Award 2024",
-                organization: "Karnataka Technical Institutions",
-                description: "Recognized for outstanding contribution to technical education",
+                title: "Srinathon 2025 - Devathon Winners",
+                organization: "Srinivas Institute of Technology",
+                description: "First prize in Devathon Hackothon 2024",
                 icon: "🏆"
               },
               {
-                title: "Smart India Hackathon Winners",
-                organization: "Government of India",
-                description: "First prize in Software Edition 2024",
+                title: "Innovation Fair Winners",
+                organization: "Pilikula Nisargadhama",
+                description: "Best Project in Tech Fair 2024",
                 icon: "🥇"
-              },
-              {
-                title: "Innovation Excellence",
-                organization: "IEEE Student Branch",
-                description: "Best Student Chapter in South India Region",
-                icon: "⭐"
-              },
-              {
-                title: "Industry Partnership Excellence",
-                organization: "TechCorp India",
-                description: "Best Industry-Academia Collaboration",
-                icon: "🤝"
               }
+              // {
+              //   title: "Innovation Excellence",
+              //   organization: "IEEE Student Branch",
+              //   description: "Best Student Chapter in South India Region",
+              //   icon: "⭐"
+              // },
+              // {
+              //   title: "Industry Partnership Excellence",
+              //   organization: "TechCorp India",
+              //   description: "Best Industry-Academia Collaboration",
+              //   icon: "🤝"
+              // }
             ].map((achievement, index) => (
               <motion.div
                 key={index}
